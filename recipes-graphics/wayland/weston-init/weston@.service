@@ -1,0 +1,14 @@
+[Unit]
+Description=Hardware RNG Entropy Gatherer Daemon
+DefaultDependencies=no
+After=systemd-udev-settle.service
+Before=sysinit.target shutdown.target
+Conflicts=shutdown.target
+Description=Start up Application
+
+[Service]
+ExecStart=/usr/share/weston/entry.sh --developer weston-launch --tty=/dev/tty7 --user=fio -- --continue-without-input --xwayland
+RemainAfterExit=true 
+
+[Install]
+WantedBy=sysinit.target

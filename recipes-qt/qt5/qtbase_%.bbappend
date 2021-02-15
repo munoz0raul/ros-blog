@@ -1,0 +1,3 @@
+PACKAGECONFIG_append_imx8mmevk = " examples vulkan eglfs cups fontconfig getentropy gif glib harfbuzz ico icu libinput linuxfb sql-sqlite tslib xkbcommon gles2 freetype "
+PACKAGECONFIG_append_raspberrypi4-64 = " examples vulkan cups fontconfig getentropy gif glib harfbuzz ico icu xkbcommon xkb linuxfb sql-sqlite "
+PACKAGECONFIG_append_intel-corei7-64 = "vulkan gles2 eglfs cups fontconfig getentropy gif glib harfbuzz ico icu libinput linuxfb sql-sqlite tslib xkbcommon gbm kms"
