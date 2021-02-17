@@ -1,6 +1,4 @@
-SRC_URI_remove = " git://github.com/foonathan/memory.git;protocol=https;name=main "
-
-SRC_URI_append = " git://github.com/foonathan/memory.git;protocol=https;name=main;branch=main "
-
-
-SRCREV_main = "e48965144d417469e712b3125398e6d00529c575"
+SRC_URI = "git://github.com/foonathan/memory.git;protocol=https;name=main;branch=main \
+    git://github.com/foonathan/compatibility.git;protocol=https;name=comp;destsuffix=git/cmake/comp \
+    git://github.com/catchorg/Catch2.git;branch=v2.x;protocol=https;name=catch;destsuffix=git/catch-upstream \
+"

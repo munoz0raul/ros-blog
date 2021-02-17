@@ -3,20 +3,22 @@
 WAYLAND_USER=${WAYLAND_USER:-fio}
 WESTON_ARGS=${WESTON_ARGS:---continue-without-input}
 
+chown fio:fio /dev/galcore
+chown fio:fio /dev/dri/card1
+chown fio:fio /dev/dri/card0
+export XDG_RUNTIME_DIR=/run/user/$(id -u ${WAYLAND_USER})
+
+echo "XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR}" >> /etc/environment
+
+if ! test -d "${XDG_RUNTIME_DIR}"; then
+    mkdir -p "${XDG_RUNTIME_DIR}"
+fi
+
+chown "${WAYLAND_USER}" "${XDG_RUNTIME_DIR}"
+chmod 0700 "${XDG_RUNTIME_DIR}"
+
 function init_xdg()
 {
-    if test -z "${XDG_RUNTIME_DIR}"; then
-        export XDG_RUNTIME_DIR=/tmp/$(id -u ${WAYLAND_USER})-runtime-dir
-    fi
-
-    echo "XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR}" >> /etc/environment
-
-    if ! test -d "${XDG_RUNTIME_DIR}"; then
-        mkdir -p "${XDG_RUNTIME_DIR}"
-    fi
-
-    chown "${WAYLAND_USER}" "${XDG_RUNTIME_DIR}"
-    chmod 0700 "${XDG_RUNTIME_DIR}"
 
     # Create folder for XWayland Unix socket
     export X11_UNIX_SOCKET="/tmp/.X11-unix"
